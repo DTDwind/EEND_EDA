@@ -162,7 +162,7 @@ def transform(
     Y = np.abs(Y)
     if transform_type.startswith('logmel'):
         n_fft = 2 * (Y.shape[1] - 1)
-        mel_basis = librosa.filters.mel(sampling_rate, n_fft, feature_dim)
+        mel_basis = librosa.filters.mel(sr=sampling_rate, n_fft=n_fft, n_mels=feature_dim)
         Y = np.dot(Y ** 2, mel_basis.T)
         Y = np.log10(np.maximum(Y, 1e-10))
         if transform_type == 'logmel_meannorm':
